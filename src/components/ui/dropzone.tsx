@@ -7,11 +7,20 @@ export interface DropzoneProps extends React.HTMLAttributes<HTMLDivElement> {
 	accept?: string;
 	maxSize?: number;
 	multiple?: boolean;
+	disabled?: boolean;
 }
 
 const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
 	(
-		{ className, onFileSelect, accept, maxSize, multiple = false, ...props },
+		{
+			className,
+			onFileSelect,
+			accept,
+			maxSize,
+			disabled,
+			multiple = false,
+			...props
+		},
 		ref
 	) => {
 		const [isDragging, setIsDragging] = React.useState(false);
@@ -87,6 +96,7 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
 					onChange={handleFileSelect}
 					accept={accept}
 					multiple={multiple}
+					disabled={disabled}
 				/>
 				<div className="flex flex-col items-center justify-center text-center">
 					<Upload className="mb-4 h-10 w-10 text-muted-foreground" />
